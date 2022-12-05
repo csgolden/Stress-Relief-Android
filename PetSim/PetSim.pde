@@ -13,7 +13,7 @@ void setup() {
   orientation(PORTRAIT);
   for (int i = 0; i < pSprites.length; i++) {
     pSprites[i] = loadImage("Sheet"+i+".png");
-    //pSprites[i].resize(212*scale, 240*scale);
+    pSprites[i].resize(160, 160);
   }
   petSheet = loadImage("Sheet0.png");
   background = loadImage("background.jpg");
@@ -48,9 +48,13 @@ void draw() {
       text("FEED DA DOGGO", width/2-150, 190);
       text("COMING SOON", width/2-150, 570);
       text("COMING SOON", width/2-150, 970);
-    } else if (gameState == 1) {
-      for (int i = 0; i < 0; i++) {
-      }
+    } else if (gameState == 1) { // Sprite shop
+      for (int x = 0; x < pSprites.length/2; x++) { // two loops to display images poth vertically and horizontally
+        for (int y= 0; y < pSprites.length/2; y++) {
+          image(pSprites[x+y*2], 350+300*x, 100+300*y);
+          println(x+y);
+        }
+      }   
       fill(0);
       rect(20, height-110, 300, 90); //return button display
       fill(255);
@@ -81,18 +85,22 @@ void mousePressed() {
           }
         }
       }
-      if (mouseX<300+20 && mouseX>20 && mouseY<90+height-110 && mouseY>height-90) { // return button
+      if (mouseX<300+20 && mouseX>20 && mouseY<90+height-110 && mouseY>height-90) { // minigame return button
         gameState = 4;
       }
     } else if (gameState == 1) {
-      if (mouseX<300+20 && mouseX>20 && mouseY<90+height-110 && mouseY>height-90) { // return button
+      if (mouseX<300+20 && mouseX>20 && mouseY<90+height-110 && mouseY>height-90) { // Shop return button
         gameState = 4;
       }
-    } else if (gameState == 2) {
-    }
-  } else {
-    if (mouseX<200+200 && mouseX>200 && mouseY<1240+200 && mouseY>1240) {
-      exit();
-    }
-  }
-}
+     for (int x = 0; x < pSprites.length/2; x++) { // Shop buttons
+        for (int y= 0; y < pSprites.length/2; y++) {
+          if (mouseX<150+28+192*y && mouseX>28+192*y && mouseY<150+120+192*x && mouseY>120+192*x) { 
+            ingAdd = int(y+x*3);
+          } else if (gameState == 2) {
+          }
+        } else {
+          if (mouseX<200+200 && mouseX>200 && mouseY<1240+200 && mouseY>1240) {
+            exit();
+          }
+        }
+      }
