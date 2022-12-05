@@ -57,7 +57,7 @@ class pet {
         if(petIndex == 0){
         image(petSheet.get(0, 650, 160, 136), location.x-80, location.y-80);        
         }else{
-        image(pSprites[petIndex],location.x,location.y); 
+        image(pSprites[petIndex],location.x-80,location.y-80); 
         }
         popMatrix();
         
@@ -67,7 +67,7 @@ class pet {
         if(petIndex == 0){
         image(petSheet.get(0, 650, 160, 136), -location.x-80, location.y-80); // filps the sprite if target.x = -;
         }else{
-        image(pSprites[petIndex],location.x,location.y); 
+        image(pSprites[petIndex],location.x-80,location.y-80); 
         }
         popMatrix();
       }
