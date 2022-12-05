@@ -1,19 +1,26 @@
 pet petSim;
 food feeder;
-PImage petSheet, background, dubSprite;
+PImage petSheet, background, dabSprite;
+PImage[] pSprites = new PImage[4];
 int targetTimer = millis();
 int scale = 4;
 int gameState = 4;
 int mgState = 0;
 int dabloons = 150;
+int petIndex = 0;
 void setup() {
   fullScreen(); //size(640, 1366);
   orientation(PORTRAIT);
-  petSheet = loadImage("DogeSpritesheet.png");
+  for (int i = 0; i < pSprites.length; i++) {
+    pSprites[i] = loadImage("Sheet"+i+".png");
+    //pSprites[i].resize(212*scale, 240*scale);
+  }
+  petSheet = loadImage("Sheet0.png");
   background = loadImage("background.jpg");
-  
+  dabSprite = loadImage("dabloons.png");
   petSheet.resize(212*scale, 240*scale);
   background.resize(width, height);
+  dabSprite.resize(567/scale, 567/scale);
   petSim = new pet();
   feeder = new food();
   feeder.feeding();
@@ -21,8 +28,8 @@ void setup() {
 void draw() {
   background(0);
   if (petSim.energy > 0) {
+    image(background, 0, 0);
     if (gameState == 4) { //default state
-      image(background, 0, 0);
       petSim.update();
       petSim.display();
       if (mgState == 1) {// feed da doggo minigame
@@ -42,6 +49,13 @@ void draw() {
       text("COMING SOON", width/2-150, 570);
       text("COMING SOON", width/2-150, 970);
     } else if (gameState == 1) {
+      for (int i = 0; i < 0; i++) {
+      }
+      fill(0);
+      rect(20, height-110, 300, 90); //return button display
+      fill(255);
+      textSize(50);
+      text("return", 90, height-50);
     } else if (gameState == 2) {
     }
   } else {
@@ -71,6 +85,9 @@ void mousePressed() {
         gameState = 4;
       }
     } else if (gameState == 1) {
+      if (mouseX<300+20 && mouseX>20 && mouseY<90+height-110 && mouseY>height-90) { // return button
+        gameState = 4;
+      }
     } else if (gameState == 2) {
     }
   } else {

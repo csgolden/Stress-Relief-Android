@@ -47,19 +47,28 @@ class pet {
 
   void display() {
     fill(0);
-    textSize(25);
+    textSize(35);
     if (petted) {//ellipse(location.x, location.y, 120, 120);
       image(petSheet.get(0, 800, 160, 180), location.x-80, location.y-80);
     } else {
       if (flip == false) {
         pushMatrix();
         scale(1, 1);
+        if(petIndex == 0){
         image(petSheet.get(0, 650, 160, 136), location.x-80, location.y-80);        
+        }else{
+        image(pSprites[petIndex],location.x,location.y); 
+        }
         popMatrix();
+        
       } else if (flip) {
         pushMatrix();
         scale(-1, 1);
+        if(petIndex == 0){
         image(petSheet.get(0, 650, 160, 136), -location.x-80, location.y-80); // filps the sprite if target.x = -;
+        }else{
+        image(pSprites[petIndex],location.x,location.y); 
+        }
         popMatrix();
       }
     }
@@ -68,15 +77,17 @@ class pet {
     }
     fill(#FFFE00);
     rect(10, height-140, map(energy, 0, 100, 0, width-20), 75, 20); // energy bar
+    image(dabSprite, 40, 160);
     fill(0);
     text("Energy", 20, height-90);
     fill(255); 
     text("aff "+ nfc(affection, 2), 25, height-190);
     text("pats "+pets, 150, height-240);
     text("love "+love, 25, height-240);
-    text("dabloons "+dabloons,150,height-190);
     textSize(50);
+    text(""+dabloons,200,240);
     text("Mini Games", 50, 100);
+    text("shop",480,100);
     
     if (affection >= 99) {
       affection = 0;
