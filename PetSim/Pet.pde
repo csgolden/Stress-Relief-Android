@@ -107,7 +107,6 @@ class pet {
       if (mouseX<290+40+360*i && mouseX>40+360*i && mouseY<130+20 && mouseY>20) { // rect(40+360*i, 20, 290, 130, 20);
         int index = int(i*1);
         gameState = index;
-        println(gameState);
       }
     }
   }

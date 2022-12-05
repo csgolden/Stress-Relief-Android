@@ -52,7 +52,6 @@ void draw() {
       for (int x = 0; x < pSprites.length/2; x++) { // two loops to display images poth vertically and horizontally
         for (int y= 0; y < pSprites.length/2; y++) {
           image(pSprites[x+y*2], 350+300*x, 100+300*y);
-          println(x+y);
         }
       }   
       fill(0);
@@ -92,15 +91,18 @@ void mousePressed() {
       if (mouseX<300+20 && mouseX>20 && mouseY<90+height-110 && mouseY>height-90) { // Shop return button
         gameState = 4;
       }
-     for (int x = 0; x < pSprites.length/2; x++) { // Shop buttons
+      for (int x = 0; x < pSprites.length/2; x++) { // shop buttons
         for (int y= 0; y < pSprites.length/2; y++) {
-          if (mouseX<150+28+192*y && mouseX>28+192*y && mouseY<150+120+192*x && mouseY>120+192*x) { 
-            ingAdd = int(y+x*3);
-          } else if (gameState == 2) {
-          }
-        } else {
-          if (mouseX<200+200 && mouseX>200 && mouseY<1240+200 && mouseY>1240) {
-            exit();
+          if (mouseX<160+350+300*x && mouseX>350+300*x && mouseY<160+100+300*y && mouseY>100+300*y) { // image(pSprites[x+y*2], 350+300*x, 100+300*y);
+            println(x+y*2);
           }
         }
       }
+    } else if (gameState == 2) {
+    } else {
+      if (mouseX<200+200 && mouseX>200 && mouseY<1240+200 && mouseY>1240) {
+        exit();
+      }
+    }
+  }
+}
