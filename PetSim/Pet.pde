@@ -16,7 +16,7 @@ class pet {
     target = new PVector(random(0,width), random(0, height/3));
     pets = 0;
     love = 0;
-    energy = 0;
+    energy = 100;
     topspeed = 2;
     affection = 0;
   }
